@@ -49,28 +49,15 @@ public class ImMessageServiceImpl implements ImMessageService {
     private ImGroupMemberService imGroupMemberService;
 
     @Override
-    public List<ImMessageDO> getMessageList(ImMessageListReqVO listReqVO) {
-        // TODO @dylan：userId 从 controller 传递，service 保持无状态
-        // 1. 获得会话编号
-        Long loginUserId = getLoginUserId();
-        // TODO @dylan：修复下 generateConversationNo 方法，fromUserId、receiverId 需要小的放前面，大的放后面。这样，可以保证一定只生成唯一的。
-        String no1 = generateConversationNo(loginUserId, listReqVO.getReceiverId(), listReqVO.getConversationType());
-        String no2 = generateConversationNo(listReqVO.getReceiverId(),loginUserId, listReqVO.getConversationType());
+    public List<ImMessageDO> getMessageList(ImMessageListReqVO listReqVO, Long loginUserId) {
 
-        // 2. 查询历史消息
+        String no = generateConversationNo(loginUserId, listReqVO.getReceiverId(), listReqVO.getConversationType());
+
         ImMessageDO message = new ImMessageDO()
                 .setSendTime(listReqVO.getSendTime())
-                .setConversationNo(no1);
-        List<ImMessageDO>  list = imMessageMapper.selectMessageList(message);
+                .setConversationNo(no);
 
-        if (!list.isEmpty()) {
-            return list;
-        }
-
-        message.setConversationNo(no2);
-        list = imMessageMapper.selectMessageList(message);
-
-        return list;
+        return imMessageMapper.selectMessageList(message);
     }
 
     @Override
@@ -110,12 +97,7 @@ public class ImMessageServiceImpl implements ImMessageService {
         AdminUserRespDTO fromUser = adminUserApi.getUser(fromUserId);
 
         // 3. 生成conversationNo
-        String conversationNo = "";
-        if (fromUserId == message.getConversationUserId()) {
-            conversationNo = generateConversationNo(fromUserId, message.getReceiverId(), message.getConversationType());
-        } else {
-            conversationNo = generateConversationNo(message.getReceiverId(), fromUserId, message.getConversationType());
-        }
+        String conversationNo = generateConversationNo(fromUserId, message.getReceiverId(), message.getConversationType());
 
         // 4. 保存消息
         ImMessageDO imMessageDO = BeanUtil.copyProperties(message, ImMessageDO.class)

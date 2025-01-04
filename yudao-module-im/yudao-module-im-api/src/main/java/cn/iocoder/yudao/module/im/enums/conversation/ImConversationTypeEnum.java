@@ -41,11 +41,18 @@ public enum ImConversationTypeEnum implements IntArrayValuable {
      * @return 会话编号
      */
     public static String generateConversationNo(Long fromUserId, Long receiverId, Integer conversationType) {
-        if (conversationType.equals(ImConversationTypeEnum.SINGLE.getType())) {
-            return "s_" + fromUserId + "_" + receiverId;
-        } else if (conversationType.equals(ImConversationTypeEnum.GROUP.getType())) {
-            return "g_" + receiverId;
+        final String SINGLE_PREFIX = "s_";
+        final String GROUP_PREFIX = "g_";
+
+        if (ImConversationTypeEnum.SINGLE.getType().equals(conversationType)) {
+            long minId = Math.min(fromUserId, receiverId);
+            long maxId = Math.max(fromUserId, receiverId);
+            return SINGLE_PREFIX + minId + "_" + maxId;
+
+        } else if (ImConversationTypeEnum.GROUP.getType().equals(conversationType)) {
+            return GROUP_PREFIX + receiverId;
         }
+
         return null;
     }
 
