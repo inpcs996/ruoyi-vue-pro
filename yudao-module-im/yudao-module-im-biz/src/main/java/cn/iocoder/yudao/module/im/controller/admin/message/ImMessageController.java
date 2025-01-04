@@ -47,7 +47,9 @@ public class ImMessageController {
     @GetMapping("/list")
     @Operation(summary = "消息列表-根据接收人和发送时间进行分页查询")
     public CommonResult<List<ImMessageRespVO>> getMessageList(@Valid ImMessageListReqVO listReqVO) {
-        List<ImMessageDO> messagePage = imMessageService.getMessageList(listReqVO);
+
+        Long loginUserId = getLoginUserId();
+        List<ImMessageDO> messagePage = imMessageService.getMessageList(listReqVO, loginUserId);
         return success(BeanUtils.toBean(messagePage, ImMessageRespVO.class));
     }
 

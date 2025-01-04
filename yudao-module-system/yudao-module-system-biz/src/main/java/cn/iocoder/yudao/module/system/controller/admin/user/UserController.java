@@ -116,31 +116,23 @@ public class UserController {
         return success(UserConvert.INSTANCE.convertList(result, deptMap));
     }
 
-    // TODO @dylan：融合到 getSimpleUserList 接口，允许传递 deptId 筛选
-    @GetMapping("/listByDept")
-    @Operation(summary = "获得部门用户列表")
-    @PreAuthorize("@ss.hasPermission('system:user:list')")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    public CommonResult<List<UserRespVO>> getDeptUsers(@RequestParam("id") Long id) {
-        List<Long> ids = new ArrayList<>();
-        ids.add(id);
-        List<AdminUserDO> result = userService.getDeptUsers(ids);
-        if (CollUtil.isEmpty(result)) {
-            return success(null);
-        }
-        // 拼接数据
-        Map<Long, DeptDO> deptMap = deptService.getDeptMap(
-                convertList(result, AdminUserDO::getDeptId));
-        return success(UserConvert.INSTANCE.convertList(result, deptMap));
-    }
 
     @GetMapping({"/list-all-simple", "/simple-list"})
     @Operation(summary = "获取用户精简信息列表", description = "只包含被开启的用户，主要用于前端的下拉选项")
-    public CommonResult<List<UserSimpleRespVO>> getSimpleUserList() {
-        List<AdminUserDO> list = userService.getUserListByStatus(CommonStatusEnum.ENABLE.getStatus());
+    public CommonResult<List<UserSimpleRespVO>> getSimpleUserList(@RequestParam("id") Long deptId) {
+        List<AdminUserDO> list;
+
+        if (deptId != null) {
+            List<Long> deptIds = Collections.singletonList(deptId);
+            list = userService.getDeptUsers(deptIds);
+        } else {
+            list = userService.getUserListByStatus(CommonStatusEnum.ENABLE.getStatus());
+        }
+
         // 拼接数据
         Map<Long, DeptDO> deptMap = deptService.getDeptMap(
                 convertList(list, AdminUserDO::getDeptId));
+
         return success(UserConvert.INSTANCE.convertSimpleList(list, deptMap));
     }
 

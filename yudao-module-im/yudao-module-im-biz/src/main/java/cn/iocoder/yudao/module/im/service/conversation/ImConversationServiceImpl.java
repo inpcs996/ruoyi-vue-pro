@@ -107,13 +107,13 @@ public class ImConversationServiceImpl implements ImConversationService {
             conversation = insertConversation(no, loginUserId, createReqVO.getTargetId(), createReqVO.getType());
         }
 
-        // TODO @dylan：这个是不是不用 push 呀。对于发送端，它自己肯定知道；对于接收端，貌似收到 message 的时候，再创建更合理一点。
         // 发送打开会话的通知，并推送会话实体
-        // 给自己发送创建会话成功的通知
+        // 给自己发送创建会话成功的通知， 方便多端登录的时候保持会话同时更新
         webSocketMessageSender.sendObject(UserTypeEnum.ADMIN.getValue(), getLoginUserId(),
                 IM_CONVERSATION_ADD, conversation);
 
         // 给接受者发送创建会话的通知
+        // TODO：[dylan] 接受者，在接收到消息的时候本地发现没有回话，就按照会话编号创建一个，因此可以不需要发送这个通知
         webSocketMessageSender.sendObject(UserTypeEnum.ADMIN.getValue(), createReqVO.getTargetId(),
                 IM_CONVERSATION_ADD, conversation);
         return conversation;

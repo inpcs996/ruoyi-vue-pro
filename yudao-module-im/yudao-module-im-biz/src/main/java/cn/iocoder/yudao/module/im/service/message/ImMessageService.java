@@ -20,7 +20,7 @@ public interface ImMessageService {
      * @param listReqVO   分页查询
      * @return 消息分页
      */
-    List<ImMessageDO> getMessageList(ImMessageListReqVO listReqVO);
+    List<ImMessageDO> getMessageList(ImMessageListReqVO listReqVO, Long loginUserId);
 
     /**
      * 获得历史消息
