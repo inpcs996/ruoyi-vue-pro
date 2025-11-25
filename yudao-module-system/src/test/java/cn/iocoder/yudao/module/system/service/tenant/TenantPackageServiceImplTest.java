@@ -167,7 +167,7 @@ public class TenantPackageServiceImplTest extends BaseDbUnitTest {
        // 断言
        assertEquals(1, pageResult.getTotal());
        assertEquals(1, pageResult.getList().size());
-       assertPojoEquals(dbTenantPackage, pageResult.getList().get(0));
+       assertPojoEquals(dbTenantPackage, pageResult.getList().getFirst());
     }
 
     @Test
@@ -230,7 +230,7 @@ public class TenantPackageServiceImplTest extends BaseDbUnitTest {
         List<TenantPackageDO> list = tenantPackageService.getTenantPackageListByStatus(
                 CommonStatusEnum.ENABLE.getStatus());
         assertEquals(1, list.size());
-        assertPojoEquals(dbTenantPackage, list.get(0));
+        assertPojoEquals(dbTenantPackage, list.getFirst());
     }
 
 }

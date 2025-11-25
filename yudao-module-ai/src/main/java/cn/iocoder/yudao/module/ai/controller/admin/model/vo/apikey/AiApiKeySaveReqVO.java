@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.ai.controller.admin.model.vo.apikey;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 import java.util.*;
 import jakarta.validation.constraints.*;
 

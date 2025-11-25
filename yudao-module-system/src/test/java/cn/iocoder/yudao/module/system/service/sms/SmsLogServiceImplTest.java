@@ -81,7 +81,7 @@ public class SmsLogServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbSmsLog, pageResult.getList().get(0));
+        assertPojoEquals(dbSmsLog, pageResult.getList().getFirst());
     }
 
     @Test

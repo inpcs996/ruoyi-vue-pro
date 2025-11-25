@@ -56,7 +56,7 @@ public class ColumnWidthMatchStyleStrategy extends AbstractColumnWidthStyleStrat
         if (isHead) {
             return cell.getStringCellValue().getBytes().length;
         }
-        WriteCellData<?> cellData = cellDataList.get(0);
+        WriteCellData<?> cellData = cellDataList.getFirst();
         CellDataTypeEnum type = cellData.getType();
         if (type == null) {
             return -1;

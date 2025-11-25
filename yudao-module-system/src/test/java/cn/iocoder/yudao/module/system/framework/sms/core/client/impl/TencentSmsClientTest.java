@@ -49,22 +49,24 @@ public class TencentSmsClientTest extends BaseMockitoUnitTest {
                     new KeyValue<>("1", 1234), new KeyValue<>("2", "login"));
             // mock 方法
             httpUtilsMockedStatic.when(() -> HttpUtils.post(anyString(), anyMap(), anyString()))
-                    .thenReturn("{\n" +
-                                    "    \"Response\": {\n" +
-                                    "        \"SendStatusSet\": [\n" +
-                                    "            {\n" +
-                                    "                \"SerialNo\": \"5000:1045710669157053657849499619\",\n" +
-                                    "                \"PhoneNumber\": \"+8618511122233\",\n" +
-                                    "                \"Fee\": 1,\n" +
-                                    "                \"SessionContext\": \"test\",\n" +
-                                    "                \"Code\": \"Ok\",\n" +
-                                    "                \"Message\": \"send success\",\n" +
-                                    "                \"IsoCode\": \"CN\"\n" +
-                                    "            },\n" +
-                                    "        ],\n" +
-                                    "        \"RequestId\": \"a0aabda6-cf91-4f3e-a81f-9198114a2279\"\n" +
-                                    "    }\n" +
-                                    "}");
+                    .thenReturn("""
+                                    {
+                                        "Response": {
+                                            "SendStatusSet": [
+                                                {
+                                                    "SerialNo": "5000:1045710669157053657849499619",
+                                                    "PhoneNumber": "+8618511122233",
+                                                    "Fee": 1,
+                                                    "SessionContext": "test",
+                                                    "Code": "Ok",
+                                                    "Message": "send success",
+                                                    "IsoCode": "CN"
+                                                },
+                                            ],
+                                            "RequestId": "a0aabda6-cf91-4f3e-a81f-9198114a2279"
+                                        }
+                                    }\
+                                    """);
 
             // 调用
             SmsSendRespDTO result = smsClient.sendSms(sendLogId, mobile,
@@ -89,22 +91,24 @@ public class TencentSmsClientTest extends BaseMockitoUnitTest {
 
             // mock 方法
             httpUtilsMockedStatic.when(() -> HttpUtils.post(anyString(), anyMap(), anyString()))
-                    .thenReturn("{\n" +
-                                    "    \"Response\": {\n" +
-                                    "        \"SendStatusSet\": [\n" +
-                                    "            {\n" +
-                                    "                \"SerialNo\": \"5000:1045710669157053657849499619\",\n" +
-                                    "                \"PhoneNumber\": \"+8618511122233\",\n" +
-                                    "                \"Fee\": 1,\n" +
-                                    "                \"SessionContext\": \"test\",\n" +
-                                    "                \"Code\": \"ERROR\",\n" +
-                                    "                \"Message\": \"send success\",\n" +
-                                    "                \"IsoCode\": \"CN\"\n" +
-                                    "            },\n" +
-                                    "        ],\n" +
-                                    "        \"RequestId\": \"a0aabda6-cf91-4f3e-a81f-9198114a2279\"\n" +
-                                    "    }\n" +
-                                    "}");
+                    .thenReturn("""
+                                    {
+                                        "Response": {
+                                            "SendStatusSet": [
+                                                {
+                                                    "SerialNo": "5000:1045710669157053657849499619",
+                                                    "PhoneNumber": "+8618511122233",
+                                                    "Fee": 1,
+                                                    "SessionContext": "test",
+                                                    "Code": "ERROR",
+                                                    "Message": "send success",
+                                                    "IsoCode": "CN"
+                                                },
+                                            ],
+                                            "RequestId": "a0aabda6-cf91-4f3e-a81f-9198114a2279"
+                                        }
+                                    }\
+                                    """);
 
             // 调用
             SmsSendRespDTO result = smsClient.sendSms(sendLogId, mobile,
@@ -145,28 +149,29 @@ public class TencentSmsClientTest extends BaseMockitoUnitTest {
     @Test
     public void testParseSmsReceiveStatus() {
         // 准备参数
-        String text = "[\n" +
-                "    {\n" +
-                "        \"user_receive_time\": \"2015-10-17 08:03:04\",\n" +
-                "        \"nationcode\": \"86\",\n" +
-                "        \"mobile\": \"13900000001\",\n" +
-                "        \"report_status\": \"SUCCESS\",\n" +
-                "        \"errmsg\": \"DELIVRD\",\n" +
-                "        \"description\": \"用户短信送达成功\",\n" +
-                "        \"sid\": \"12345\",\n" +
-                "        \"ext\": {\"logId\":\"67890\"}\n" +
-                "    }\n" +
-                "]";
+        String text = """
+                [
+                    {
+                        "user_receive_time": "2015-10-17 08:03:04",
+                        "nationcode": "86",
+                        "mobile": "13900000001",
+                        "report_status": "SUCCESS",
+                        "errmsg": "DELIVRD",
+                        "description": "用户短信送达成功",
+                        "sid": "12345",
+                        "ext": {"logId":"67890"}
+                    }
+                ]""";
 
         // 调用
         List<SmsReceiveRespDTO> statuses = smsClient.parseSmsReceiveStatus(text);
         // 断言
         assertEquals(1, statuses.size());
-        assertTrue(statuses.get(0).getSuccess());
-        assertEquals("DELIVRD", statuses.get(0).getErrorCode());
-        assertEquals("13900000001", statuses.get(0).getMobile());
-        assertEquals(LocalDateTime.of(2015, 10, 17, 8, 3, 4), statuses.get(0).getReceiveTime());
-        assertEquals("12345", statuses.get(0).getSerialNo());
+        assertTrue(statuses.getFirst().getSuccess());
+        assertEquals("DELIVRD", statuses.getFirst().getErrorCode());
+        assertEquals("13900000001", statuses.getFirst().getMobile());
+        assertEquals(LocalDateTime.of(2015, 10, 17, 8, 3, 4), statuses.getFirst().getReceiveTime());
+        assertEquals("12345", statuses.getFirst().getSerialNo());
     }
 
     @Test
@@ -177,21 +182,23 @@ public class TencentSmsClientTest extends BaseMockitoUnitTest {
 
             // mock 方法
             httpUtilsMockedStatic.when(() -> HttpUtils.post(anyString(), anyMap(), anyString()))
-                    .thenReturn("{     \"Response\": {\n" +
-                            "        \"DescribeTemplateStatusSet\": [\n" +
-                            "            {\n" +
-                            "                \"TemplateName\": \"验证码\",\n" +
-                            "                \"TemplateId\": 1122,\n" +
-                            "                \"International\": 0,\n" +
-                            "                \"ReviewReply\": \"审批备注\",\n" +
-                            "                \"CreateTime\": 1617379200,\n" +
-                            "                \"TemplateContent\": \"您的验证码是{1}\",\n" +
-                            "                \"StatusCode\": 0\n" +
-                            "            },\n" +
-                            "            \n" +
-                            "        ],\n" +
-                            "        \"RequestId\": \"f36e4f00-605e-49b1-ad0d-bfaba81c7325\"\n" +
-                            "    }}");
+                    .thenReturn("""
+                            {     "Response": {
+                                    "DescribeTemplateStatusSet": [
+                                        {
+                                            "TemplateName": "验证码",
+                                            "TemplateId": 1122,
+                                            "International": 0,
+                                            "ReviewReply": "审批备注",
+                                            "CreateTime": 1617379200,
+                                            "TemplateContent": "您的验证码是{1}",
+                                            "StatusCode": 0
+                                        },
+                                       \s
+                                    ],
+                                    "RequestId": "f36e4f00-605e-49b1-ad0d-bfaba81c7325"
+                                }}\
+                            """);
 
             // 调用
             SmsTemplateRespDTO result = smsClient.getSmsTemplate(apiTemplateId);

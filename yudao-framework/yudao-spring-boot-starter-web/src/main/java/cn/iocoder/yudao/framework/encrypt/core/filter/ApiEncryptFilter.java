@@ -143,8 +143,7 @@ public class ApiEncryptFilter extends ApiRequestFilter {
                 return null;
             }
             Object handler = mappingHandler.getHandler();
-            if (handler instanceof HandlerMethod) {
-                HandlerMethod handlerMethod = (HandlerMethod) handler;
+            if (handler instanceof HandlerMethod handlerMethod) {
                 ApiEncrypt annotation = handlerMethod.getMethodAnnotation(ApiEncrypt.class);
                 if (annotation == null) {
                     annotation = handlerMethod.getBeanType().getAnnotation(ApiEncrypt.class);

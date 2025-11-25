@@ -2,7 +2,6 @@ package cn.iocoder.yudao.module.trade.controller.admin.delivery.vo.pickup;
 
 import cn.iocoder.yudao.framework.common.enums.CommonStatusEnum;
 import cn.iocoder.yudao.framework.common.validation.InEnum;
-import lombok.*;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;

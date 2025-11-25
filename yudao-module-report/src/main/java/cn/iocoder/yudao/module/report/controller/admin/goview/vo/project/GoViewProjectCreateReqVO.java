@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.report.controller.admin.goview.vo.project;
 
-import lombok.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 

@@ -34,7 +34,7 @@ public class RateLimiterRedisDAO {
     }
 
     private static String formatKey(String key) {
-        return String.format(RATE_LIMITER, key);
+        return RATE_LIMITER.formatted(key);
     }
 
     private RRateLimiter getRRateLimiter(String key, long count, int time, TimeUnit timeUnit) {

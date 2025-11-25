@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.mp.dal.dataobject.tag;
 
 import cn.iocoder.yudao.module.mp.dal.dataobject.account.MpAccountDO;
-import lombok.*;
 
 import com.baomidou.mybatisplus.annotation.*;
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;

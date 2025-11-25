@@ -185,7 +185,7 @@ public class MailLogServiceImplTest extends BaseDbUnitTest {
        // 断言
        assertEquals(1, pageResult.getTotal());
        assertEquals(1, pageResult.getList().size());
-       assertPojoEquals(dbMailLog, pageResult.getList().get(0));
+       assertPojoEquals(dbMailLog, pageResult.getList().getFirst());
     }
 
     private static Map<String, Object> randomTemplateParams() {

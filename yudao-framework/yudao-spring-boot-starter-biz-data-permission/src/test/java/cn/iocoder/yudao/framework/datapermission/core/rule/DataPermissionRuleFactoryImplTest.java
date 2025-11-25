@@ -72,7 +72,7 @@ class DataPermissionRuleFactoryImplTest extends BaseMockitoUnitTest {
         List<DataPermissionRule> result = dataPermissionRuleFactory.getDataPermissionRule(mappedStatementId);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(DataPermissionRule01.class, result.get(0).getClass());
+        assertEquals(DataPermissionRule01.class, result.getFirst().getClass());
     }
 
     @Test
@@ -86,7 +86,7 @@ class DataPermissionRuleFactoryImplTest extends BaseMockitoUnitTest {
         List<DataPermissionRule> result = dataPermissionRuleFactory.getDataPermissionRule(mappedStatementId);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(DataPermissionRule02.class, result.get(0).getClass());
+        assertEquals(DataPermissionRule02.class, result.getFirst().getClass());
     }
 
     @Test

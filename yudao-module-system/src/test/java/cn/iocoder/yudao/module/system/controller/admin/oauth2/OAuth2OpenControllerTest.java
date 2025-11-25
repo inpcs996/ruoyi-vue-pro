@@ -211,7 +211,7 @@ public class OAuth2OpenControllerTest extends BaseMockitoUnitTest {
         // 断言
         assertEquals(0, result.getCode());
         assertPojoEquals(client, result.getData().getClient());
-        assertEquals(new KeyValue<>("read", true), result.getData().getScopes().get(0));
+        assertEquals(new KeyValue<>("read", true), result.getData().getScopes().getFirst());
         assertEquals(new KeyValue<>("write", false), result.getData().getScopes().get(1));
         assertEquals(new KeyValue<>("all", false), result.getData().getScopes().get(2));
     }

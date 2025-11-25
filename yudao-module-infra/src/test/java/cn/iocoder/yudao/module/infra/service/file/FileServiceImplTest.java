@@ -74,7 +74,7 @@ public class FileServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        AssertUtils.assertPojoEquals(dbFile, pageResult.getList().get(0));
+        AssertUtils.assertPojoEquals(dbFile, pageResult.getList().getFirst());
     }
 
     /**

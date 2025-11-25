@@ -141,8 +141,8 @@ public class Demo03StudentNormalServiceImpl implements Demo03StudentNormalServic
         });
 
         // 第二步，批量添加、修改、删除
-        if (CollUtil.isNotEmpty(diffList.get(0))) {
-            demo03CourseNormalMapper.insertBatch(diffList.get(0));
+        if (CollUtil.isNotEmpty(diffList.getFirst())) {
+            demo03CourseNormalMapper.insertBatch(diffList.getFirst());
         }
         if (CollUtil.isNotEmpty(diffList.get(1))) {
             demo03CourseNormalMapper.updateBatch(diffList.get(1));

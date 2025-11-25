@@ -201,7 +201,7 @@ public class FileConfigServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbFileConfig, pageResult.getList().get(0));
+        assertPojoEquals(dbFileConfig, pageResult.getList().getFirst());
     }
 
     @Test

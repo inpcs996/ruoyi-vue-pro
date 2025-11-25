@@ -69,7 +69,7 @@ public class PictureWordCaptchaServiceImpl extends AbstractCaptchaService {
         }
 
         // 取出验证码
-        String codeKey = String.format(REDIS_CAPTCHA_KEY, captchaVO.getToken());
+        String codeKey = REDIS_CAPTCHA_KEY.formatted(captchaVO.getToken());
         if (!CaptchaServiceFactory.getCache(cacheType).exists(codeKey)) {
             return ResponseModel.errorMsg(RepCodeEnum.API_CAPTCHA_INVALID);
         }
@@ -96,7 +96,7 @@ public class PictureWordCaptchaServiceImpl extends AbstractCaptchaService {
             afterValidateFail(captchaVO);
             return ResponseModel.errorMsg(e.getMessage());
         }
-        String secondKey = String.format(REDIS_SECOND_CAPTCHA_KEY, value);
+        String secondKey = REDIS_SECOND_CAPTCHA_KEY.formatted(value);
         CaptchaServiceFactory.getCache(cacheType).set(secondKey, captchaVO.getToken(), EXPIRESIN_THREE);
         captchaVO.setResult(true);
         captchaVO.resetClientFlag();
@@ -110,7 +110,7 @@ public class PictureWordCaptchaServiceImpl extends AbstractCaptchaService {
             return r;
         }
         try {
-            String codeKey = String.format(REDIS_SECOND_CAPTCHA_KEY, captchaVO.getCaptchaVerification());
+            String codeKey = REDIS_SECOND_CAPTCHA_KEY.formatted(captchaVO.getCaptchaVerification());
             if (!CaptchaServiceFactory.getCache(cacheType).exists(codeKey)) {
                 return ResponseModel.errorMsg(RepCodeEnum.API_CAPTCHA_INVALID);
             }
@@ -173,7 +173,7 @@ public class PictureWordCaptchaServiceImpl extends AbstractCaptchaService {
         dataVO.setToken(RandomUtils.getUUID());
 //        dataVO.setSecretKey(secretKey);
         // 将坐标信息存入 redis 中
-        String codeKey = String.format(REDIS_CAPTCHA_KEY, dataVO.getToken());
+        String codeKey = REDIS_CAPTCHA_KEY.formatted(dataVO.getToken());
         CaptchaServiceFactory.getCache(cacheType).set(codeKey, getCodeValue(text, secretKey), EXPIRESIN_SECONDS);
         return dataVO;
     }

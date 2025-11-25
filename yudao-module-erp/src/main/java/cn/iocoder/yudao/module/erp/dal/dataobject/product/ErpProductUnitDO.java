@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.erp.dal.dataobject.product;
 
-import lombok.*;
 import java.util.*;
 import java.time.LocalDateTime;
 import java.time.LocalDateTime;

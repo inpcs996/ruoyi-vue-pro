@@ -51,14 +51,14 @@ public class CollectionUtilsTest {
         // 断言
         assertEquals(result.size(), 3);
         // 断言 create
-        assertEquals(result.get(0).size(), 1);
-        assertEquals(result.get(0).get(0), new Dog(null, "小白", "xb"));
+        assertEquals(result.getFirst().size(), 1);
+        assertEquals(result.getFirst().getFirst(), new Dog(null, "小白", "xb"));
         // 断言 update
         assertEquals(result.get(1).size(), 1);
-        assertEquals(result.get(1).get(0), new Dog(1, "花花2", "hh"));
+        assertEquals(result.get(1).getFirst(), new Dog(1, "花花2", "hh"));
         // 断言 delete
         assertEquals(result.get(2).size(), 1);
-        assertEquals(result.get(2).get(0), new Dog(2, "旺财", "wc"));
+        assertEquals(result.get(2).getFirst(), new Dog(2, "旺财", "wc"));
     }
 
 }

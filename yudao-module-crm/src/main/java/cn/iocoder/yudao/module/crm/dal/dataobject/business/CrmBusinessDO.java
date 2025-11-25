@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.crm.enums.business.CrmBusinessEndStatusEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

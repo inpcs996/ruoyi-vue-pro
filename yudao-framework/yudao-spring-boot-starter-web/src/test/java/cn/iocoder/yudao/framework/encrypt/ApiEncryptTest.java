@@ -58,12 +58,14 @@ public class ApiEncryptTest {
     @Test
     public void testEncrypt_aes() {
         String key = "52549111389893486934626385991395";
-        String body = "{\n" +
-                "  \"username\": \"admin\",\n" +
-                "  \"password\": \"admin123\",\n" +
-                "  \"uuid\": \"3acd87a09a4f48fb9118333780e94883\",\n" +
-                "  \"code\": \"1024\"\n" +
-                "}";
+        String body = """
+                {
+                  "username": "admin",
+                  "password": "admin123",
+                  "uuid": "3acd87a09a4f48fb9118333780e94883",
+                  "code": "1024"
+                }\
+                """;
         String encrypt = SecureUtil.aes(StrUtil.utf8Bytes(key))
                 .encryptBase64(body);
         System.out.println("encrypt = " + encrypt);
@@ -72,12 +74,14 @@ public class ApiEncryptTest {
     @Test
     public void testEncrypt_rsa() {
         String key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCls2rIpnGdYnLFgz1XU13GbNQ5DloyPpvW00FPGjqn5Z6JpK+kDtVlnkhwR87iRrE5Vf2WNqRX6vzbLSgveIQY8e8oqGCb829myjf1MuI+ZzN4ghf/7tEYhZJGPI9AbfxFqBUzm+kR3/HByAI22GLT96WM26QiMK8n3tIP/yiLswIDAQAB";
-        String body = "{\n" +
-                "  \"username\": \"admin\",\n" +
-                "  \"password\": \"admin123\",\n" +
-                "  \"uuid\": \"3acd87a09a4f48fb9118333780e94883\",\n" +
-                "  \"code\": \"1024\"\n" +
-                "}";
+        String body = """
+                {
+                  "username": "admin",
+                  "password": "admin123",
+                  "uuid": "3acd87a09a4f48fb9118333780e94883",
+                  "code": "1024"
+                }\
+                """;
         String encrypt = SecureUtil.rsa(null, key)
                 .encryptBase64(body, KeyType.PublicKey);
         System.out.println("encrypt = " + encrypt);

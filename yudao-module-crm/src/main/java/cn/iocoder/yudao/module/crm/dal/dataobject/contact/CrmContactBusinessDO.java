@@ -5,7 +5,6 @@ import cn.iocoder.yudao.module.crm.dal.dataobject.business.CrmBusinessDO;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * CRM 联系人与商机的关联 DO

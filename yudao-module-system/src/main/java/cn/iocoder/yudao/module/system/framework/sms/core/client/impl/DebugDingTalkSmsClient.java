@@ -43,7 +43,7 @@ public class DebugDingTalkSmsClient extends AbstractSmsClient {
         String url = buildUrl("robot/send");
         Map<String, Object> params = new HashMap<>();
         params.put("msgtype", "text");
-        String content = String.format("【模拟短信】\n手机号：%s\n短信日志编号：%d\n模板参数：%s",
+        String content = "【模拟短信】\n手机号：%s\n短信日志编号：%d\n模板参数：%s".formatted(
                 mobile, sendLogId, MapUtils.convertMap(templateParams));
         params.put("text", MapUtil.builder().put("content", content).build());
         // 执行请求

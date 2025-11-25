@@ -150,7 +150,7 @@ public class PostServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(postDO, pageResult.getList().get(0));
+        assertPojoEquals(postDO, pageResult.getList().getFirst());
     }
 
     @Test
@@ -168,7 +168,7 @@ public class PostServiceImplTest extends BaseDbUnitTest {
         List<PostDO> list = postService.getPostList(ids);
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(postDO01, list.get(0));
+        assertPojoEquals(postDO01, list.getFirst());
     }
 
     @Test
@@ -186,7 +186,7 @@ public class PostServiceImplTest extends BaseDbUnitTest {
         List<PostDO> list = postService.getPostList(ids, singletonList(CommonStatusEnum.ENABLE.getStatus()));
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(postDO01, list.get(0));
+        assertPojoEquals(postDO01, list.getFirst());
     }
 
     @Test

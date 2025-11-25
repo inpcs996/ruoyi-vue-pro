@@ -42,7 +42,7 @@ public class DatabaseTableServiceImplTest extends BaseDbUnitTest {
                 "config", "参数");
         // 断言
         assertEquals(1, tables.size());
-        assertTableInfo(tables.get(0));
+        assertTableInfo(tables.getFirst());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class DatabaseTableServiceImplTest extends BaseDbUnitTest {
         assertEquals("参数配置表", tableInfo.getComment());
         assertEquals(13, tableInfo.getFields().size());
         // id 字段
-        TableField idField = tableInfo.getFields().get(0);
+        TableField idField = tableInfo.getFields().getFirst();
         assertEquals("id", idField.getName());
         assertEquals(JdbcType.BIGINT, idField.getMetaInfo().getJdbcType());
         assertEquals("编号", idField.getComment());

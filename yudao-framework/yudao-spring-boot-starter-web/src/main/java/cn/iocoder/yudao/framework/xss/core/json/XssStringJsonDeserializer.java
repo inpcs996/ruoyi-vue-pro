@@ -61,8 +61,8 @@ public class XssStringJsonDeserializer extends StringDeserializer {
             if (ob == null) {
                 return null;
             }
-            if (ob instanceof byte[]) {
-                return ctxt.getBase64Variant().encode((byte[]) ob, false);
+            if (ob instanceof byte[] bytes) {
+                return ctxt.getBase64Variant().encode(bytes, false);
             }
             // otherwise, try conversion using toString()...
             return ob.toString();

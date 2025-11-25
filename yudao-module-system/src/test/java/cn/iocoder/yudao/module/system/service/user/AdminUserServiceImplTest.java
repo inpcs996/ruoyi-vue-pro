@@ -128,7 +128,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         assertEquals(CommonStatusEnum.ENABLE.getStatus(), user.getStatus());
         // 断言关联岗位
         List<UserPostDO> userPosts = userPostMapper.selectListByUserId(user.getId());
-        assertEquals(1L, userPosts.get(0).getPostId());
+        assertEquals(1L, userPosts.getFirst().getPostId());
         assertEquals(2L, userPosts.get(1).getPostId());
     }
 
@@ -182,7 +182,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         assertPojoEquals(reqVO, user, "password");
         // 断言关联岗位
         List<UserPostDO> userPosts = userPostMapper.selectListByUserId(user.getId());
-        assertEquals(2L, userPosts.get(0).getPostId());
+        assertEquals(2L, userPosts.getFirst().getPostId());
         assertEquals(3L, userPosts.get(1).getPostId());
     }
 
@@ -345,7 +345,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbUser, pageResult.getList().get(0));
+        assertPojoEquals(dbUser, pageResult.getList().getFirst());
     }
 
     /**
@@ -402,7 +402,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         List<AdminUserDO> list = userService.getUserListByDeptIds(deptIds);
         // 断言
         assertEquals(1, list.size());
-        assertEquals(dbUser, list.get(0));
+        assertEquals(dbUser, list.getFirst());
     }
 
     /**
@@ -452,7 +452,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         UserImportRespVO respVO = userService.importUserList(newArrayList(importUser), true);
         // 断言
         assertEquals(1, respVO.getCreateUsernames().size());
-        AdminUserDO user = userMapper.selectByUsername(respVO.getCreateUsernames().get(0));
+        AdminUserDO user = userMapper.selectByUsername(respVO.getCreateUsernames().getFirst());
         assertPojoEquals(importUser, user);
         assertEquals("java", user.getPassword());
         assertEquals(0, respVO.getUpdateUsernames().size());
@@ -519,7 +519,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(0, respVO.getCreateUsernames().size());
         assertEquals(1, respVO.getUpdateUsernames().size());
-        AdminUserDO user = userMapper.selectByUsername(respVO.getUpdateUsernames().get(0));
+        AdminUserDO user = userMapper.selectByUsername(respVO.getUpdateUsernames().getFirst());
         assertPojoEquals(importUser, user);
         assertEquals(0, respVO.getFailureUsernames().size());
     }
@@ -644,7 +644,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         List<AdminUserDO> result = userService.getUserListByPostIds(postIds);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(user1, result.get(0));
+        assertEquals(user1, result.getFirst());
     }
 
     @Test
@@ -661,7 +661,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         List<AdminUserDO> result = userService.getUserList(ids);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(user, result.get(0));
+        assertEquals(user, result.getFirst());
     }
 
     @Test
@@ -695,7 +695,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         List<AdminUserDO> result = userService.getUserListByNickname(nickname);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(user, result.get(0));
+        assertEquals(user, result.getFirst());
     }
 
     @Test
@@ -712,7 +712,7 @@ public class AdminUserServiceImplTest extends BaseDbUnitTest {
         List<AdminUserDO> result = userService.getUserListByStatus(status);
         // 断言
         assertEquals(1, result.size());
-        assertEquals(user, result.get(0));
+        assertEquals(user, result.getFirst());
     }
 
     @Test

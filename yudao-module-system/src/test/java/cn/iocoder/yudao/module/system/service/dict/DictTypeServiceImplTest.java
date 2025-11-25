@@ -69,7 +69,7 @@ public class DictTypeServiceImplTest extends BaseDbUnitTest {
        // 断言
        assertEquals(1, pageResult.getTotal());
        assertEquals(1, pageResult.getList().size());
-       assertPojoEquals(dbDictType, pageResult.getList().get(0));
+       assertPojoEquals(dbDictType, pageResult.getList().getFirst());
     }
 
     @Test
@@ -177,7 +177,7 @@ public class DictTypeServiceImplTest extends BaseDbUnitTest {
         List<DictTypeDO> dictTypeDOList = dictTypeService.getDictTypeList();
         // 断言
         assertEquals(2, dictTypeDOList.size());
-        assertPojoEquals(dictTypeDO01, dictTypeDOList.get(0));
+        assertPojoEquals(dictTypeDO01, dictTypeDOList.getFirst());
         assertPojoEquals(dictTypeDO02, dictTypeDOList.get(1));
     }
 

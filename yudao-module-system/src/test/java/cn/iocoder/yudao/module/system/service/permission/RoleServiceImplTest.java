@@ -214,7 +214,7 @@ public class RoleServiceImplTest extends BaseDbUnitTest {
                 singleton(CommonStatusEnum.ENABLE.getStatus()));
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(dbRole01, list.get(0));
+        assertPojoEquals(dbRole01, list.getFirst());
     }
 
     @Test
@@ -229,7 +229,7 @@ public class RoleServiceImplTest extends BaseDbUnitTest {
         List<RoleDO> list = roleService.getRoleList();
         // 断言
         assertEquals(2, list.size());
-        assertPojoEquals(dbRole01, list.get(0));
+        assertPojoEquals(dbRole01, list.getFirst());
         assertPojoEquals(dbRole02, list.get(1));
     }
 
@@ -247,7 +247,7 @@ public class RoleServiceImplTest extends BaseDbUnitTest {
         List<RoleDO> list = roleService.getRoleList(ids);
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(dbRole01, list.get(0));
+        assertPojoEquals(dbRole01, list.getFirst());
     }
 
     @Test
@@ -268,7 +268,7 @@ public class RoleServiceImplTest extends BaseDbUnitTest {
             List<RoleDO> list = roleService.getRoleListFromCache(ids);
             // 断言
             assertEquals(1, list.size());
-            assertPojoEquals(dbRole, list.get(0));
+            assertPojoEquals(dbRole, list.getFirst());
         }
     }
 
@@ -300,7 +300,7 @@ public class RoleServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbRole, pageResult.getList().get(0));
+        assertPojoEquals(dbRole, pageResult.getList().getFirst());
     }
 
     @Test

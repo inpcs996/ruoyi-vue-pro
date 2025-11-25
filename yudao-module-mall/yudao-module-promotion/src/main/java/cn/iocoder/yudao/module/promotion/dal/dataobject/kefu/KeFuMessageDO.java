@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.promotion.enums.kefu.KeFuMessageContentTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 客服消息 DO

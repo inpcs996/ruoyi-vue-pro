@@ -87,11 +87,11 @@ public class RedisPendingMessageResendJob {
                     }
                     // 重新投递消息
                     redisTemplate.getRedisTemplate().opsForStream().add(StreamRecords.newRecord()
-                            .ofObject(records.get(0).getValue()) // 设置内容
+                            .ofObject(records.getFirst().getValue()) // 设置内容
                             .withStreamKey(listener.getStreamKey()));
                     // ack 消息消费完成
-                    redisTemplate.getRedisTemplate().opsForStream().acknowledge(listener.getGroup(), records.get(0));
-                    log.info("[processPendingMessage][消息({})重新投递成功]", records.get(0).getId());
+                    redisTemplate.getRedisTemplate().opsForStream().acknowledge(listener.getGroup(), records.getFirst());
+                    log.info("[processPendingMessage][消息({})重新投递成功]", records.getFirst().getId());
                 });
             });
         });

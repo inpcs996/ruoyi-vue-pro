@@ -2,7 +2,6 @@ package cn.iocoder.yudao.module.crm.dal.dataobject.customer;
 
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.*;
 
 /**
  * 客户公海配置 DO

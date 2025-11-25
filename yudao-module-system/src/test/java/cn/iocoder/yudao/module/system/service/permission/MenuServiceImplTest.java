@@ -139,7 +139,7 @@ public class MenuServiceImplTest extends BaseDbUnitTest {
         List<MenuDO> list = menuService.getMenuList();
         // 断言
         assertEquals(2, list.size());
-        assertPojoEquals(menu100, list.get(0));
+        assertPojoEquals(menu100, list.getFirst());
         assertPojoEquals(menu101, list.get(1));
     }
 
@@ -159,7 +159,7 @@ public class MenuServiceImplTest extends BaseDbUnitTest {
         List<MenuDO> result = menuService.getMenuList(reqVO);
         // 断言
         assertEquals(1, result.size());
-        assertPojoEquals(menuDO, result.get(0));
+        assertPojoEquals(menuDO, result.getFirst());
     }
 
     @Test
@@ -184,7 +184,7 @@ public class MenuServiceImplTest extends BaseDbUnitTest {
         List<MenuDO> result = menuService.getMenuListByTenant(reqVO);
         // 断言
         assertEquals(1, result.size());
-        assertPojoEquals(menu100, result.get(0));
+        assertPojoEquals(menu100, result.getFirst());
     }
 
     @Test
@@ -201,7 +201,7 @@ public class MenuServiceImplTest extends BaseDbUnitTest {
         List<Long> ids = menuService.getMenuIdListByPermissionFromCache(permission);
         // 断言
         assertEquals(1, ids.size());
-        assertEquals(menu100.getId(), ids.get(0));
+        assertEquals(menu100.getId(), ids.getFirst());
     }
 
     @Test
@@ -218,7 +218,7 @@ public class MenuServiceImplTest extends BaseDbUnitTest {
         List<MenuDO> list = menuService.getMenuList(ids);
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(menu100, list.get(0));
+        assertPojoEquals(menu100, list.getFirst());
     }
 
     @Test

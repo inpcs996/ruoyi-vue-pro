@@ -142,8 +142,8 @@ public class PermissionServiceTest extends BaseDbUnitTest {
         // 断言
         List<RoleMenuDO> roleMenuList = roleMenuMapper.selectList();
         assertEquals(2, roleMenuList.size());
-        assertEquals(1L, roleMenuList.get(0).getRoleId());
-        assertEquals(200L, roleMenuList.get(0).getMenuId());
+        assertEquals(1L, roleMenuList.getFirst().getRoleId());
+        assertEquals(200L, roleMenuList.getFirst().getMenuId());
         assertEquals(1L, roleMenuList.get(1).getRoleId());
         assertEquals(300L, roleMenuList.get(1).getMenuId());
     }
@@ -168,11 +168,11 @@ public class PermissionServiceTest extends BaseDbUnitTest {
         // 断言数据 RoleMenuDO
         List<RoleMenuDO> dbRoleMenus = roleMenuMapper.selectList();
         assertEquals(1, dbRoleMenus.size());
-        assertPojoEquals(dbRoleMenus.get(0), roleMenuDO02);
+        assertPojoEquals(dbRoleMenus.getFirst(), roleMenuDO02);
         // 断言数据 UserRoleDO
         List<UserRoleDO> dbUserRoles = userRoleMapper.selectList();
         assertEquals(1, dbUserRoles.size());
-        assertPojoEquals(dbUserRoles.get(0), userRoleDO02);
+        assertPojoEquals(dbUserRoles.getFirst(), userRoleDO02);
     }
 
     @Test
@@ -190,7 +190,7 @@ public class PermissionServiceTest extends BaseDbUnitTest {
         // 断言数据
         List<RoleMenuDO> dbRoleMenus = roleMenuMapper.selectList();
         assertEquals(1, dbRoleMenus.size());
-        assertPojoEquals(dbRoleMenus.get(0), roleMenuDO02);
+        assertPojoEquals(dbRoleMenus.getFirst(), roleMenuDO02);
     }
 
     @Test
@@ -258,8 +258,8 @@ public class PermissionServiceTest extends BaseDbUnitTest {
         // 断言
         List<UserRoleDO> userRoleDOList = userRoleMapper.selectList();
         assertEquals(2, userRoleDOList.size());
-        assertEquals(1L, userRoleDOList.get(0).getUserId());
-        assertEquals(200L, userRoleDOList.get(0).getRoleId());
+        assertEquals(1L, userRoleDOList.getFirst().getUserId());
+        assertEquals(200L, userRoleDOList.getFirst().getRoleId());
         assertEquals(1L, userRoleDOList.get(1).getUserId());
         assertEquals(300L, userRoleDOList.get(1).getRoleId());
     }
@@ -279,7 +279,7 @@ public class PermissionServiceTest extends BaseDbUnitTest {
         // 断言数据
         List<UserRoleDO> dbUserRoles = userRoleMapper.selectList();
         assertEquals(1, dbUserRoles.size());
-        assertPojoEquals(dbUserRoles.get(0), userRoleDO02);
+        assertPojoEquals(dbUserRoles.getFirst(), userRoleDO02);
     }
 
     @Test
@@ -368,7 +368,7 @@ public class PermissionServiceTest extends BaseDbUnitTest {
             List<RoleDO> result = permissionService.getEnableUserRoleListByUserIdFromCache(userId);
             // 断言
             assertEquals(1, result.size());
-            assertPojoEquals(role01, result.get(0));
+            assertPojoEquals(role01, result.getFirst());
         }
     }
 

@@ -119,7 +119,7 @@ public class AliyunSmsClient extends AbstractSmsClient {
             case 0: return SmsTemplateAuditStatusEnum.CHECKING.getStatus();
             case 1: return SmsTemplateAuditStatusEnum.SUCCESS.getStatus();
             case 2: return SmsTemplateAuditStatusEnum.FAIL.getStatus();
-            default: throw new IllegalArgumentException(String.format("未知审核状态(%d)", templateStatus));
+            default: throw new IllegalArgumentException("未知审核状态(%d)".formatted(templateStatus));
         }
     }
 

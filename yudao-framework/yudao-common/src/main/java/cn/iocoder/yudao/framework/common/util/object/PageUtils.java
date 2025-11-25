@@ -44,7 +44,7 @@ public class PageUtils {
      * @return 排序字段
      */
     public static <T> SortingField buildSortingField(Func1<T, ?> func, String order) {
-        Assert.isTrue(ArrayUtil.contains(ORDER_TYPES, order), String.format("字段的排序类型只能是 %s/%s", ORDER_TYPES));
+        Assert.isTrue(ArrayUtil.contains(ORDER_TYPES, order), "字段的排序类型只能是 %s/%s".formatted(ORDER_TYPES));
 
         String fieldName = LambdaUtil.getFieldName(func);
         return new SortingField(fieldName, order);

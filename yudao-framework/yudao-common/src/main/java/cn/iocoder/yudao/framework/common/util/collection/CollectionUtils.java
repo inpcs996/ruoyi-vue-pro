@@ -267,7 +267,7 @@ public class CollectionUtils {
     }
 
     public static <T> T getFirst(List<T> from) {
-        return !CollectionUtil.isEmpty(from) ? from.get(0) : null;
+        return !CollectionUtil.isEmpty(from) ? from.getFirst() : null;
     }
 
     public static <T> T findFirst(Collection<T> from, Predicate<T> predicate) {

@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.trade.controller.admin.delivery.vo.express;
 
-import lombok.*;
 import java.util.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;

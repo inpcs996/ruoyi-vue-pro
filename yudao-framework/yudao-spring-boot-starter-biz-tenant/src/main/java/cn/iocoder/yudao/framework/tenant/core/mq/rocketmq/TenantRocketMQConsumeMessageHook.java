@@ -32,7 +32,7 @@ public class TenantRocketMQConsumeMessageHook implements ConsumeMessageHook {
         List<MessageExt> messages = context.getMsgList();
         Assert.isTrue(messages.size() == 1, "消息条数({})不正确", messages.size());
         // 设置租户编号
-        String tenantId = messages.get(0).getUserProperty(HEADER_TENANT_ID);
+        String tenantId = messages.getFirst().getUserProperty(HEADER_TENANT_ID);
         if (StrUtil.isNotEmpty(tenantId)) {
             TenantContextHolder.setTenantId(Long.parseLong(tenantId));
         }

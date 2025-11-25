@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.ai.tool.function.WeatherQueryToolFunction;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * AI 工具 DO

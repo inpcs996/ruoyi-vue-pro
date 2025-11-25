@@ -74,7 +74,7 @@ public class ApiErrorLogServiceImplTest extends BaseDbUnitTest {
         // 断言，只查到了一条符合条件的
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(apiErrorLogDO, pageResult.getList().get(0));
+        assertPojoEquals(apiErrorLogDO, pageResult.getList().getFirst());
     }
 
     @Test
@@ -158,7 +158,7 @@ public class ApiErrorLogServiceImplTest extends BaseDbUnitTest {
         List<ApiErrorLogDO> logs = apiErrorLogMapper.selectList();
         assertEquals(1, logs.size());
         // TODO @芋艿：createTime updateTime 被屏蔽，仅 win11 会复现，建议后续修复。
-        assertPojoEquals(log02, logs.get(0), "createTime", "updateTime");
+        assertPojoEquals(log02, logs.getFirst(), "createTime", "updateTime");
     }
 
 }

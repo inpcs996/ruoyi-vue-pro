@@ -109,7 +109,7 @@ public class DeptDataPermissionRule implements DataPermissionRule {
             deptDataPermission = permissionApi.getDeptDataPermission(loginUser.getId());
             if (deptDataPermission == null) {
                 log.error("[getExpression][LoginUser({}) 获取数据权限为 null]", JsonUtils.toJsonString(loginUser));
-                throw new NullPointerException(String.format("LoginUser(%d) Table(%s/%s) 未返回数据权限",
+                throw new NullPointerException("LoginUser(%d) Table(%s/%s) 未返回数据权限".formatted(
                         loginUser.getId(), tableName, tableAlias.getName()));
             }
             // 添加到上下文中，避免重复计算

@@ -150,7 +150,7 @@ public class SmsChannelServiceTest extends BaseDbUnitTest {
         List<SmsChannelDO> list = smsChannelService.getSmsChannelList();
         // 断言
         assertEquals(2, list.size());
-        assertPojoEquals(dbSmsChannel01, list.get(0));
+        assertPojoEquals(dbSmsChannel01, list.getFirst());
         assertPojoEquals(dbSmsChannel02, list.get(1));
     }
 
@@ -180,7 +180,7 @@ public class SmsChannelServiceTest extends BaseDbUnitTest {
        // 断言
        assertEquals(1, pageResult.getTotal());
        assertEquals(1, pageResult.getList().size());
-       assertPojoEquals(dbSmsChannel, pageResult.getList().get(0));
+       assertPojoEquals(dbSmsChannel, pageResult.getList().getFirst());
     }
 
     @Test

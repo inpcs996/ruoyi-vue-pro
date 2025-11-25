@@ -45,7 +45,7 @@ public class ApiSignatureRedisDAO {
     }
 
     private static String formatNonceKey(String appId, String nonce) {
-        return String.format(SIGNATURE_NONCE, appId, nonce);
+        return SIGNATURE_NONCE.formatted(appId, nonce);
     }
 
     // ========== 签名密钥 ==========

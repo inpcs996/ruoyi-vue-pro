@@ -35,7 +35,7 @@ public class IdempotentRedisDAO {
     }
 
     private static String formatKey(String key) {
-        return String.format(IDEMPOTENT, key);
+        return IDEMPOTENT.formatted(key);
     }
 
 }

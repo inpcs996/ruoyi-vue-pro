@@ -88,7 +88,7 @@ public class DataSourceConfigServiceImpl implements DataSourceConfigService {
     public List<DataSourceConfigDO> getDataSourceConfigList() {
         List<DataSourceConfigDO> result = dataSourceConfigMapper.selectList();
         // 补充 master 数据源
-        result.add(0, buildMasterDataSourceConfig());
+        result.addFirst(buildMasterDataSourceConfig());
         return result;
     }
 

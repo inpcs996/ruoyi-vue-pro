@@ -64,7 +64,7 @@ public class CodegenBuilderTest extends BaseMockitoUnitTest {
         List<CodegenColumnDO> columns = codegenBuilder.buildColumns(tableId, tableFields);
         // 断言
         assertEquals(1, columns.size());
-        CodegenColumnDO column = columns.get(0);
+        CodegenColumnDO column = columns.getFirst();
         assertEquals(tableId, column.getTableId());
         assertEquals("id2", column.getColumnName());
         assertEquals("BIGINT", column.getDataType());

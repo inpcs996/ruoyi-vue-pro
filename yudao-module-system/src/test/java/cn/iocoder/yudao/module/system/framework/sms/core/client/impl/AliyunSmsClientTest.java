@@ -95,33 +95,34 @@ public class AliyunSmsClientTest extends BaseMockitoUnitTest {
     @Test
     public void testParseSmsReceiveStatus() {
         // 准备参数
-        String text = "[\n" +
-                "  {\n" +
-                "    \"phone_number\" : \"13900000001\",\n" +
-                "    \"send_time\" : \"2017-01-01 11:12:13\",\n" +
-                "    \"report_time\" : \"2017-02-02 22:23:24\",\n" +
-                "    \"success\" : true,\n" +
-                "    \"err_code\" : \"DELIVERED\",\n" +
-                "    \"err_msg\" : \"用户接收成功\",\n" +
-                "    \"sms_size\" : \"1\",\n" +
-                "    \"biz_id\" : \"12345\",\n" +
-                "    \"out_id\" : \"67890\"\n" +
-                "  }\n" +
-                "]";
+        String text = """
+                [
+                  {
+                    "phone_number" : "13900000001",
+                    "send_time" : "2017-01-01 11:12:13",
+                    "report_time" : "2017-02-02 22:23:24",
+                    "success" : true,
+                    "err_code" : "DELIVERED",
+                    "err_msg" : "用户接收成功",
+                    "sms_size" : "1",
+                    "biz_id" : "12345",
+                    "out_id" : "67890"
+                  }
+                ]""";
         // mock 方法
 
         // 调用
         List<SmsReceiveRespDTO> statuses = smsClient.parseSmsReceiveStatus(text);
         // 断言
         assertEquals(1, statuses.size());
-        assertTrue(statuses.get(0).getSuccess());
-        assertEquals("DELIVERED", statuses.get(0).getErrorCode());
-        assertEquals("用户接收成功", statuses.get(0).getErrorMsg());
-        assertEquals("13900000001", statuses.get(0).getMobile());
+        assertTrue(statuses.getFirst().getSuccess());
+        assertEquals("DELIVERED", statuses.getFirst().getErrorCode());
+        assertEquals("用户接收成功", statuses.getFirst().getErrorMsg());
+        assertEquals("13900000001", statuses.getFirst().getMobile());
         assertEquals(LocalDateTime.of(2017, 2, 2, 22, 23, 24),
-                statuses.get(0).getReceiveTime());
-        assertEquals("12345", statuses.get(0).getSerialNo());
-        assertEquals(67890L, statuses.get(0).getLogId());
+                statuses.getFirst().getReceiveTime());
+        assertEquals("12345", statuses.getFirst().getSerialNo());
+        assertEquals(67890L, statuses.getFirst().getLogId());
     }
 
     @Test

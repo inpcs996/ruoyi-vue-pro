@@ -64,12 +64,12 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         assertTrue(success);
         List<OAuth2ApproveDO> result = oauth2ApproveMapper.selectList();
         assertEquals(1, result.size());
-        assertEquals(userId, result.get(0).getUserId());
-        assertEquals(userType, result.get(0).getUserType());
-        assertEquals(clientId, result.get(0).getClientId());
-        assertEquals("read", result.get(0).getScope());
-        assertTrue(result.get(0).getApproved());
-        assertFalse(DateUtils.isExpired(result.get(0).getExpiresTime()));
+        assertEquals(userId, result.getFirst().getUserId());
+        assertEquals(userType, result.getFirst().getUserType());
+        assertEquals(clientId, result.getFirst().getClientId());
+        assertEquals("read", result.getFirst().getScope());
+        assertTrue(result.getFirst().getApproved());
+        assertFalse(DateUtils.isExpired(result.getFirst().getExpiresTime()));
     }
 
     @Test
@@ -153,12 +153,12 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         List<OAuth2ApproveDO> result = oauth2ApproveMapper.selectList();
         assertEquals(2, result.size());
         // read
-        assertEquals(userId, result.get(0).getUserId());
-        assertEquals(userType, result.get(0).getUserType());
-        assertEquals(clientId, result.get(0).getClientId());
-        assertEquals("read", result.get(0).getScope());
-        assertTrue(result.get(0).getApproved());
-        assertFalse(DateUtils.isExpired(result.get(0).getExpiresTime()));
+        assertEquals(userId, result.getFirst().getUserId());
+        assertEquals(userType, result.getFirst().getUserType());
+        assertEquals(clientId, result.getFirst().getClientId());
+        assertEquals("read", result.getFirst().getScope());
+        assertTrue(result.getFirst().getApproved());
+        assertFalse(DateUtils.isExpired(result.getFirst().getExpiresTime()));
         // write
         assertEquals(userId, result.get(1).getUserId());
         assertEquals(userType, result.get(1).getUserType());
@@ -186,12 +186,12 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         List<OAuth2ApproveDO> result = oauth2ApproveMapper.selectList();
         assertEquals(1, result.size());
         // write
-        assertEquals(userId, result.get(0).getUserId());
-        assertEquals(userType, result.get(0).getUserType());
-        assertEquals(clientId, result.get(0).getClientId());
-        assertEquals("write", result.get(0).getScope());
-        assertFalse(result.get(0).getApproved());
-        assertFalse(DateUtils.isExpired(result.get(0).getExpiresTime()));
+        assertEquals(userId, result.getFirst().getUserId());
+        assertEquals(userType, result.getFirst().getUserType());
+        assertEquals(clientId, result.getFirst().getClientId());
+        assertEquals("write", result.getFirst().getScope());
+        assertFalse(result.getFirst().getApproved());
+        assertFalse(DateUtils.isExpired(result.getFirst().getExpiresTime()));
     }
 
     @Test
@@ -212,7 +212,7 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, result.size());
         // TODO @芋艿：expiresTime 被屏蔽，仅 win11 会复现，建议后续修复。
-        assertPojoEquals(approve, result.get(0), "expiresTime");
+        assertPojoEquals(approve, result.getFirst(), "expiresTime");
     }
 
     @Test
@@ -232,12 +232,12 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         // 断言
         List<OAuth2ApproveDO> result = oauth2ApproveMapper.selectList();
         assertEquals(1, result.size());
-        assertEquals(userId, result.get(0).getUserId());
-        assertEquals(userType, result.get(0).getUserType());
-        assertEquals(clientId, result.get(0).getClientId());
-        assertEquals(scope, result.get(0).getScope());
-        assertEquals(approved, result.get(0).getApproved());
-        assertEquals(expireTime, result.get(0).getExpiresTime());
+        assertEquals(userId, result.getFirst().getUserId());
+        assertEquals(userType, result.getFirst().getUserType());
+        assertEquals(clientId, result.getFirst().getClientId());
+        assertEquals(scope, result.getFirst().getScope());
+        assertEquals(approved, result.getFirst().getApproved());
+        assertEquals(expireTime, result.getFirst().getExpiresTime());
     }
 
     @Test
@@ -260,13 +260,13 @@ public class OAuth2ApproveServiceImplTest extends BaseDbUnitTest {
         // 断言
         List<OAuth2ApproveDO> result = oauth2ApproveMapper.selectList();
         assertEquals(1, result.size());
-        assertEquals(approve.getId(), result.get(0).getId());
-        assertEquals(userId, result.get(0).getUserId());
-        assertEquals(userType, result.get(0).getUserType());
-        assertEquals(clientId, result.get(0).getClientId());
-        assertEquals(scope, result.get(0).getScope());
-        assertEquals(approved, result.get(0).getApproved());
-        assertEquals(expireTime, result.get(0).getExpiresTime());
+        assertEquals(approve.getId(), result.getFirst().getId());
+        assertEquals(userId, result.getFirst().getUserId());
+        assertEquals(userType, result.getFirst().getUserType());
+        assertEquals(clientId, result.getFirst().getClientId());
+        assertEquals(scope, result.getFirst().getScope());
+        assertEquals(approved, result.getFirst().getApproved());
+        assertEquals(expireTime, result.getFirst().getExpiresTime());
     }
 
 }

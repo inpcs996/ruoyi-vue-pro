@@ -42,7 +42,7 @@ class DataPermissionContextHolderTest {
         DataPermission dataPermission02 = mock(DataPermission.class);
         DataPermissionContextHolder.add(dataPermission02);
         // 断言
-        DataPermission first = DataPermissionContextHolder.getAll().get(0);
+        DataPermission first = DataPermissionContextHolder.getAll().getFirst();
         DataPermission second = DataPermissionContextHolder.getAll().get(1);
         assertSame(dataPermission01, first);
         assertSame(dataPermission02, second);

@@ -79,7 +79,7 @@ public abstract class AbstractRedisChannelMessageListener<T extends AbstractRedi
     private Class<T> getMessageClass() {
         Type type = TypeUtil.getTypeArgument(getClass(), 0);
         if (type == null) {
-            throw new IllegalStateException(String.format("类型(%s) 需要设置消息类型", getClass().getName()));
+            throw new IllegalStateException("类型(%s) 需要设置消息类型".formatted(getClass().getName()));
         }
         return (Class<T>) type;
     }

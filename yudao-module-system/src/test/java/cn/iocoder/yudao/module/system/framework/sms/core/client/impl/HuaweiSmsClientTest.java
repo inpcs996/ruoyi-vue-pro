@@ -117,7 +117,7 @@ public class HuaweiSmsClientTest extends BaseMockitoUnitTest {
         List<SmsReceiveRespDTO> statuses = smsClient.parseSmsReceiveStatus(text);
         // 断言
         assertEquals(1, statuses.size());
-        SmsReceiveRespDTO status = statuses.get(0);
+        SmsReceiveRespDTO status = statuses.getFirst();
         assertTrue(status.getSuccess());
         assertEquals("DELIVRD", status.getErrorCode());
         assertEquals(LocalDateTime.of(2024, 8, 15, 3, 0, 34), status.getReceiveTime());

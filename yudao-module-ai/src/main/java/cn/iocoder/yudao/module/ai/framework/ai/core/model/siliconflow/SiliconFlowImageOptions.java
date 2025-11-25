@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.ai.image.ImageOptions;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * 硅基流动 {@link ImageOptions}
  *
@@ -55,7 +57,7 @@ public class SiliconFlowImageOptions implements ImageOptions {
      *
      */
     @JsonProperty("seed")
-    private Integer seed =  (int)(Math.random() * 1_000_000_000);
+    private Integer seed =  (int)(ThreadLocalRandom.current().nextDouble() * 1_000_000_000);
 
     /**
      * The image that needs to be uploaded should be converted into base64 format.

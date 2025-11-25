@@ -241,7 +241,7 @@ public class SmsTemplateServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbSmsTemplate, pageResult.getList().get(0));
+        assertPojoEquals(dbSmsTemplate, pageResult.getList().getFirst());
     }
 
     @Test

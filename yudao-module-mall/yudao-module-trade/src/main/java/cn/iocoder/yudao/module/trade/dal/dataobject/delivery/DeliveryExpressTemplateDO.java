@@ -5,7 +5,6 @@ import cn.iocoder.yudao.module.trade.enums.delivery.DeliveryExpressChargeModeEnu
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 快递运费模板 DO

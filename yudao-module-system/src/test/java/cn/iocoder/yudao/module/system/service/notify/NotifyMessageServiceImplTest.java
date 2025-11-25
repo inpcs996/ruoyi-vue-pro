@@ -103,7 +103,7 @@ public class NotifyMessageServiceImplTest extends BaseDbUnitTest {
        // 断言
        assertEquals(1, pageResult.getTotal());
        assertEquals(1, pageResult.getList().size());
-       assertPojoEquals(dbNotifyMessage, pageResult.getList().get(0));
+       assertPojoEquals(dbNotifyMessage, pageResult.getList().getFirst());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class NotifyMessageServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbNotifyMessage, pageResult.getList().get(0));
+        assertPojoEquals(dbNotifyMessage, pageResult.getList().getFirst());
     }
 
     @Test
@@ -179,7 +179,7 @@ public class NotifyMessageServiceImplTest extends BaseDbUnitTest {
         List<NotifyMessageDO> list = notifyMessageService.getUnreadNotifyMessageList(userId, userType, size);
         // 断言
         assertEquals(1, list.size());
-        assertPojoEquals(dbNotifyMessage, list.get(0));
+        assertPojoEquals(dbNotifyMessage, list.getFirst());
     }
 
     @Test

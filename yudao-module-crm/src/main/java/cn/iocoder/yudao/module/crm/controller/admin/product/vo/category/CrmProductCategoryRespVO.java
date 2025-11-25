@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.crm.controller.admin.product.vo.category;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 import java.time.LocalDateTime;
 

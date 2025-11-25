@@ -36,7 +36,7 @@ public class ApiAccessLogInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 记录 HandlerMethod，提供给 ApiAccessLogFilter 使用
-        HandlerMethod handlerMethod = handler instanceof HandlerMethod ? (HandlerMethod) handler : null;
+        HandlerMethod handlerMethod = handler instanceof HandlerMethod hm ? hm : null;
         if (handlerMethod != null) {
             request.setAttribute(ATTRIBUTE_HANDLER_METHOD, handlerMethod);
         }
@@ -90,7 +90,7 @@ public class ApiAccessLogInterceptor implements HandlerInterceptor {
                     .filter(i -> clazzContents.get(i).contains(" " + method.getName() + "(")) // 简单匹配，不考虑方法重名
                     .mapToObj(i -> i + 1) // 行号从 1 开始
                     .findFirst();
-            if (!lineNumber.isPresent()) {
+            if (lineNumber.isEmpty()) {
                 return;
             }
             // 打印结果

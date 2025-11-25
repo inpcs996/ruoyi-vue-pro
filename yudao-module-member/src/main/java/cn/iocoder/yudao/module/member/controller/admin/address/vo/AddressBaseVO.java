@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.member.controller.admin.address.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.*;

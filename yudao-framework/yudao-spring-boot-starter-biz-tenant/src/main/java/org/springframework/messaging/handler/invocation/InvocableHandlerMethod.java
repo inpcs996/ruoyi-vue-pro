@@ -138,17 +138,17 @@ public class InvocableHandlerMethod extends HandlerMethod {
         if (tenantId == null) {
             return null;
         }
-        if (tenantId instanceof Long) {
-            return (Long) tenantId;
+        if (tenantId instanceof Long long1) {
+            return long1;
         }
-        if (tenantId instanceof Number) {
-            return ((Number) tenantId).longValue();
+        if (tenantId instanceof Number number) {
+            return number.longValue();
         }
-        if (tenantId instanceof String) {
-            return Long.parseLong((String) tenantId);
+        if (tenantId instanceof String string) {
+            return Long.parseLong(string);
         }
-        if (tenantId instanceof byte[]) {
-            return Long.parseLong(new String((byte[]) tenantId));
+        if (tenantId instanceof byte[] bytes) {
+            return Long.parseLong(new String(bytes));
         }
         throw new IllegalArgumentException("未知的数据类型：" + tenantId);
     }

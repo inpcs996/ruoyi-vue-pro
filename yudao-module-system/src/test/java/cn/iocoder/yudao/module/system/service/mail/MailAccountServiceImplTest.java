@@ -142,7 +142,7 @@ public class MailAccountServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbMailAccount, pageResult.getList().get(0));
+        assertPojoEquals(dbMailAccount, pageResult.getList().getFirst());
     }
 
     @Test
@@ -172,7 +172,7 @@ public class MailAccountServiceImplTest extends BaseDbUnitTest {
         List<MailAccountDO> list = mailAccountService.getMailAccountList();
         // 断言
         assertEquals(2, list.size());
-        assertPojoEquals(dbMailAccount01, list.get(0));
+        assertPojoEquals(dbMailAccount01, list.getFirst());
         assertPojoEquals(dbMailAccount02, list.get(1));
     }
 

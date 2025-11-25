@@ -51,7 +51,7 @@ class NoticeServiceImplTest extends BaseDbUnitTest {
         // 验证查询结果经过筛选
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbNotice, pageResult.getList().get(0));
+        assertPojoEquals(dbNotice, pageResult.getList().getFirst());
     }
 
     @Test

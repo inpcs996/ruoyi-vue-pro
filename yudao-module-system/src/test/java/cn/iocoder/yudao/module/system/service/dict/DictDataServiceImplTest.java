@@ -61,7 +61,7 @@ public class DictDataServiceImplTest extends BaseDbUnitTest {
         List<DictDataDO> dictDataDOList = dictDataService.getDictDataList(status, dictType);
         // 断言
         assertEquals(2, dictDataDOList.size());
-        assertPojoEquals(dictDataDO02, dictDataDOList.get(0));
+        assertPojoEquals(dictDataDO02, dictDataDOList.getFirst());
         assertPojoEquals(dictDataDO01, dictDataDOList.get(1));
     }
 
@@ -91,7 +91,7 @@ public class DictDataServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbDictData, pageResult.getList().get(0));
+        assertPojoEquals(dbDictData, pageResult.getList().getFirst());
     }
 
     @Test

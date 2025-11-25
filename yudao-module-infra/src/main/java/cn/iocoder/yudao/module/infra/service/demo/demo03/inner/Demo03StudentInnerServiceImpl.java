@@ -141,8 +141,8 @@ public class Demo03StudentInnerServiceImpl implements Demo03StudentInnerService 
         });
 
         // 第二步，批量添加、修改、删除
-        if (CollUtil.isNotEmpty(diffList.get(0))) {
-            demo03CourseInnerMapper.insertBatch(diffList.get(0));
+        if (CollUtil.isNotEmpty(diffList.getFirst())) {
+            demo03CourseInnerMapper.insertBatch(diffList.getFirst());
         }
         if (CollUtil.isNotEmpty(diffList.get(1))) {
             demo03CourseInnerMapper.updateBatch(diffList.get(1));

@@ -7,7 +7,6 @@ import cn.iocoder.yudao.module.pay.enums.PayChannelEnum;
 import cn.iocoder.yudao.module.pay.enums.order.PayOrderStatusEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 import java.time.LocalDateTime;
 

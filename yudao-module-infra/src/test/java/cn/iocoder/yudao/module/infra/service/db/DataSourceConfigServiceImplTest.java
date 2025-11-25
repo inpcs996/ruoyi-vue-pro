@@ -196,11 +196,11 @@ public class DataSourceConfigServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(2, dataSourceConfigList.size());
         // master
-        assertEquals(0L, dataSourceConfigList.get(0).getId());
-        assertEquals("primary", dataSourceConfigList.get(0).getName());
-        assertEquals("http://localhost:3306", dataSourceConfigList.get(0).getUrl());
-        assertEquals("yunai", dataSourceConfigList.get(0).getUsername());
-        assertEquals("tudou", dataSourceConfigList.get(0).getPassword());
+        assertEquals(0L, dataSourceConfigList.getFirst().getId());
+        assertEquals("primary", dataSourceConfigList.getFirst().getName());
+        assertEquals("http://localhost:3306", dataSourceConfigList.getFirst().getUrl());
+        assertEquals("yunai", dataSourceConfigList.getFirst().getUsername());
+        assertEquals("tudou", dataSourceConfigList.getFirst().getPassword());
         // normal
         assertPojoEquals(dbDataSourceConfig, dataSourceConfigList.get(1));
     }

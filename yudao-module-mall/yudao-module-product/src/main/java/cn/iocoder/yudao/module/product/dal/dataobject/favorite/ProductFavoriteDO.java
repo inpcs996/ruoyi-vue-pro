@@ -5,7 +5,6 @@ import cn.iocoder.yudao.module.product.dal.dataobject.spu.ProductSpuDO;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 商品收藏 DO

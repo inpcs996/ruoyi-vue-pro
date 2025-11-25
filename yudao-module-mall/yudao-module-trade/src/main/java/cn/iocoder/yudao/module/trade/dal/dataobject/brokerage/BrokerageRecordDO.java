@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.trade.enums.brokerage.BrokerageRecordStatusEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 import java.time.LocalDateTime;
 

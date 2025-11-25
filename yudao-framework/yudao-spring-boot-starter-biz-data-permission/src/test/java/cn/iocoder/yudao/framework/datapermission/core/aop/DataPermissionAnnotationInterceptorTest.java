@@ -72,7 +72,7 @@ public class DataPermissionAnnotationInterceptorTest extends BaseMockitoUnitTest
     }
 
     private void mockMethodInvocation(Class<?> clazz) throws Throwable {
-        Object targetObject = clazz.newInstance();
+        Object targetObject = clazz.getDeclaredConstructor().newInstance();
         Method method = targetObject.getClass().getMethod("echo");
         when(methodInvocation.getThis()).thenReturn(targetObject);
         when(methodInvocation.getMethod()).thenReturn(method);

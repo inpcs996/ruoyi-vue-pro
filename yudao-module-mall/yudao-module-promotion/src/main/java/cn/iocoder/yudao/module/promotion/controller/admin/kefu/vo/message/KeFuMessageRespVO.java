@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.promotion.controller.admin.kefu.vo.message;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 import java.time.LocalDateTime;
 

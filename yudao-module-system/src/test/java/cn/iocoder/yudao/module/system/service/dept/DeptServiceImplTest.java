@@ -214,7 +214,7 @@ public class DeptServiceImplTest extends BaseDbUnitTest {
         List<DeptDO> deptDOList = deptService.getDeptList(ids);
         // 断言
         assertEquals(2, deptDOList.size());
-        assertEquals(deptDO01, deptDOList.get(0));
+        assertEquals(deptDO01, deptDOList.getFirst());
         assertEquals(deptDO02, deptDOList.get(1));
     }
 
@@ -239,7 +239,7 @@ public class DeptServiceImplTest extends BaseDbUnitTest {
         List<DeptDO> sysDeptDOS = deptService.getDeptList(reqVO);
         // 断言
         assertEquals(1, sysDeptDOS.size());
-        assertPojoEquals(dept, sysDeptDOS.get(0));
+        assertPojoEquals(dept, sysDeptDOS.getFirst());
     }
 
     @Test
@@ -261,7 +261,7 @@ public class DeptServiceImplTest extends BaseDbUnitTest {
         List<DeptDO> result = deptService.getChildDeptList(id);
         // 断言
         assertEquals(result.size(), 2);
-        assertPojoEquals(dept1, result.get(0));
+        assertPojoEquals(dept1, result.getFirst());
         assertPojoEquals(dept1a, result.get(1));
     }
 

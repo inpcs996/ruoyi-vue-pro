@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.trade.enums.order.TradeOrderOperateTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 订单日志 DO

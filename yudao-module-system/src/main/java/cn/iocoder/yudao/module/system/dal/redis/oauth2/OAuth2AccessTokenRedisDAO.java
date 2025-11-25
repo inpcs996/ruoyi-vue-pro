@@ -53,7 +53,7 @@ public class OAuth2AccessTokenRedisDAO {
     }
 
     private static String formatKey(String accessToken) {
-        return String.format(OAUTH2_ACCESS_TOKEN, accessToken);
+        return OAUTH2_ACCESS_TOKEN.formatted(accessToken);
     }
 
 }

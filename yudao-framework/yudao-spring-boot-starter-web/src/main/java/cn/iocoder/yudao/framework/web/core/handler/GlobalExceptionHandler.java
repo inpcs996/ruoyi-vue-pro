@@ -76,44 +76,44 @@ public class GlobalExceptionHandler {
      * @return 通用返回
      */
     public CommonResult<?> allExceptionHandler(HttpServletRequest request, Throwable ex) {
-        if (ex instanceof MissingServletRequestParameterException) {
-            return missingServletRequestParameterExceptionHandler((MissingServletRequestParameterException) ex);
+        if (ex instanceof MissingServletRequestParameterException exception) {
+            return missingServletRequestParameterExceptionHandler(exception);
         }
-        if (ex instanceof MethodArgumentTypeMismatchException) {
-            return methodArgumentTypeMismatchExceptionHandler((MethodArgumentTypeMismatchException) ex);
+        if (ex instanceof MethodArgumentTypeMismatchException exception) {
+            return methodArgumentTypeMismatchExceptionHandler(exception);
         }
-        if (ex instanceof MethodArgumentNotValidException) {
-            return methodArgumentNotValidExceptionExceptionHandler((MethodArgumentNotValidException) ex);
+        if (ex instanceof MethodArgumentNotValidException exception) {
+            return methodArgumentNotValidExceptionExceptionHandler(exception);
         }
-        if (ex instanceof BindException) {
-            return bindExceptionHandler((BindException) ex);
+        if (ex instanceof BindException exception) {
+            return bindExceptionHandler(exception);
         }
-        if (ex instanceof ConstraintViolationException) {
-            return constraintViolationExceptionHandler((ConstraintViolationException) ex);
+        if (ex instanceof ConstraintViolationException exception) {
+            return constraintViolationExceptionHandler(exception);
         }
-        if (ex instanceof ValidationException) {
-            return validationException((ValidationException) ex);
+        if (ex instanceof ValidationException exception) {
+            return validationException(exception);
         }
-        if (ex instanceof MaxUploadSizeExceededException) {
-            return maxUploadSizeExceededExceptionHandler((MaxUploadSizeExceededException) ex);
+        if (ex instanceof MaxUploadSizeExceededException exception) {
+            return maxUploadSizeExceededExceptionHandler(exception);
         }
-        if (ex instanceof NoHandlerFoundException) {
-            return noHandlerFoundExceptionHandler((NoHandlerFoundException) ex);
+        if (ex instanceof NoHandlerFoundException exception) {
+            return noHandlerFoundExceptionHandler(exception);
         }
-        if (ex instanceof NoResourceFoundException) {
-            return noResourceFoundExceptionHandler(request, (NoResourceFoundException) ex);
+        if (ex instanceof NoResourceFoundException exception) {
+            return noResourceFoundExceptionHandler(request, exception);
         }
-        if (ex instanceof HttpRequestMethodNotSupportedException) {
-            return httpRequestMethodNotSupportedExceptionHandler((HttpRequestMethodNotSupportedException) ex);
+        if (ex instanceof HttpRequestMethodNotSupportedException exception) {
+            return httpRequestMethodNotSupportedExceptionHandler(exception);
         }
-        if (ex instanceof HttpMediaTypeNotSupportedException) {
-            return httpMediaTypeNotSupportedExceptionHandler((HttpMediaTypeNotSupportedException) ex);
+        if (ex instanceof HttpMediaTypeNotSupportedException exception) {
+            return httpMediaTypeNotSupportedExceptionHandler(exception);
         }
-        if (ex instanceof ServiceException) {
-            return serviceExceptionHandler((ServiceException) ex);
+        if (ex instanceof ServiceException exception) {
+            return serviceExceptionHandler(exception);
         }
-        if (ex instanceof AccessDeniedException) {
-            return accessDeniedExceptionHandler(request, (AccessDeniedException) ex);
+        if (ex instanceof AccessDeniedException exception) {
+            return accessDeniedExceptionHandler(request, exception);
         }
         return defaultExceptionHandler(request, ex);
     }
@@ -126,7 +126,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
     public CommonResult<?> missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException ex) {
         log.warn("[missingServletRequestParameterExceptionHandler]", ex);
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数缺失:%s", ex.getParameterName()));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求参数缺失:%s".formatted(ex.getParameterName()));
     }
 
     /**
@@ -137,7 +137,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public CommonResult<?> methodArgumentTypeMismatchExceptionHandler(MethodArgumentTypeMismatchException ex) {
         log.warn("[methodArgumentTypeMismatchExceptionHandler]", ex);
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数类型错误:%s", ex.getMessage()));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求参数类型错误:%s".formatted(ex.getMessage()));
     }
 
     /**
@@ -153,7 +153,7 @@ public class GlobalExceptionHandler {
             // 组合校验，参考自 https://t.zsxq.com/3HVTx
             List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
             if (CollUtil.isNotEmpty(allErrors)) {
-                errorMessage = allErrors.get(0).getDefaultMessage();
+                errorMessage = allErrors.getFirst().getDefaultMessage();
             }
         } else {
             errorMessage = fieldError.getDefaultMessage();
@@ -162,7 +162,7 @@ public class GlobalExceptionHandler {
         if (StrUtil.isEmpty(errorMessage)) {
             return CommonResult.error(BAD_REQUEST);
         }
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数不正确:%s", errorMessage));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求参数不正确:%s".formatted(errorMessage));
     }
 
     /**
@@ -173,7 +173,7 @@ public class GlobalExceptionHandler {
         log.warn("[handleBindException]", ex);
         FieldError fieldError = ex.getFieldError();
         assert fieldError != null; // 断言，避免告警
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数不正确:%s", fieldError.getDefaultMessage()));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求参数不正确:%s".formatted(fieldError.getDefaultMessage()));
     }
 
     /**
@@ -187,7 +187,7 @@ public class GlobalExceptionHandler {
         log.warn("[methodArgumentTypeInvalidFormatExceptionHandler]", ex);
         if (ex.getCause() instanceof InvalidFormatException) {
             InvalidFormatException invalidFormatException = (InvalidFormatException) ex.getCause();
-            return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数类型错误:%s", invalidFormatException.getValue()));
+            return CommonResult.error(BAD_REQUEST.getCode(), "请求参数类型错误:%s".formatted(invalidFormatException.getValue()));
         }
         if (StrUtil.startWith(ex.getMessage(), "Required request body is missing")) {
             return CommonResult.error(BAD_REQUEST.getCode(), "请求参数类型错误: request body 缺失");
@@ -202,7 +202,7 @@ public class GlobalExceptionHandler {
     public CommonResult<?> constraintViolationExceptionHandler(ConstraintViolationException ex) {
         log.warn("[constraintViolationExceptionHandler]", ex);
         ConstraintViolation<?> constraintViolation = ex.getConstraintViolations().iterator().next();
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求参数不正确:%s", constraintViolation.getMessage()));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求参数不正确:%s".formatted(constraintViolation.getMessage()));
     }
 
     /**
@@ -233,7 +233,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     public CommonResult<?> noHandlerFoundExceptionHandler(NoHandlerFoundException ex) {
         log.warn("[noHandlerFoundExceptionHandler]", ex);
-        return CommonResult.error(NOT_FOUND.getCode(), String.format("请求地址不存在:%s", ex.getRequestURL()));
+        return CommonResult.error(NOT_FOUND.getCode(), "请求地址不存在:%s".formatted(ex.getRequestURL()));
     }
 
     /**
@@ -242,7 +242,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     private CommonResult<?> noResourceFoundExceptionHandler(HttpServletRequest req, NoResourceFoundException ex) {
         log.warn("[noResourceFoundExceptionHandler]", ex);
-        return CommonResult.error(NOT_FOUND.getCode(), String.format("请求地址不存在:%s", ex.getResourcePath()));
+        return CommonResult.error(NOT_FOUND.getCode(), "请求地址不存在:%s".formatted(ex.getResourcePath()));
     }
 
     /**
@@ -253,7 +253,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public CommonResult<?> httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException ex) {
         log.warn("[httpRequestMethodNotSupportedExceptionHandler]", ex);
-        return CommonResult.error(METHOD_NOT_ALLOWED.getCode(), String.format("请求方法不正确:%s", ex.getMessage()));
+        return CommonResult.error(METHOD_NOT_ALLOWED.getCode(), "请求方法不正确:%s".formatted(ex.getMessage()));
     }
 
     /**
@@ -264,7 +264,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     public CommonResult<?> httpMediaTypeNotSupportedExceptionHandler(HttpMediaTypeNotSupportedException ex) {
         log.warn("[httpMediaTypeNotSupportedExceptionHandler]", ex);
-        return CommonResult.error(BAD_REQUEST.getCode(), String.format("请求类型不正确:%s", ex.getMessage()));
+        return CommonResult.error(BAD_REQUEST.getCode(), "请求类型不正确:%s".formatted(ex.getMessage()));
     }
 
     /**

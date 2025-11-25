@@ -172,7 +172,7 @@ public class SmsTemplateServiceImpl implements SmsTemplateService {
     void validateApiTemplate(Long channelId, String apiTemplateId) {
         // 获得短信模板
         SmsClient smsClient = smsChannelService.getSmsClient(channelId);
-        Assert.notNull(smsClient, String.format("短信客户端(%d) 不存在", channelId));
+        Assert.notNull(smsClient, "短信客户端(%d) 不存在".formatted(channelId));
         SmsTemplateRespDTO template;
         try {
             template = smsClient.getSmsTemplate(apiTemplateId);

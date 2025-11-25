@@ -25,8 +25,8 @@ public class YudaoCaptchaConfiguration {
     public CaptchaCacheService captchaCacheService(AjCaptchaProperties config,
                                                    StringRedisTemplate stringRedisTemplate) {
         CaptchaCacheService captchaCacheService = CaptchaServiceFactory.getCache(config.getCacheType().name());
-        if (captchaCacheService instanceof RedisCaptchaServiceImpl) {
-            ((RedisCaptchaServiceImpl) captchaCacheService).setStringRedisTemplate(stringRedisTemplate);
+        if (captchaCacheService instanceof RedisCaptchaServiceImpl impl) {
+            impl.setStringRedisTemplate(stringRedisTemplate);
         }
         return captchaCacheService;
     }

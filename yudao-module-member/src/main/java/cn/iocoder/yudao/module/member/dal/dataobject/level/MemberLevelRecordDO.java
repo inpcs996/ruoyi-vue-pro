@@ -5,7 +5,6 @@ import cn.iocoder.yudao.module.member.dal.dataobject.user.MemberUserDO;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 会员等级记录 DO

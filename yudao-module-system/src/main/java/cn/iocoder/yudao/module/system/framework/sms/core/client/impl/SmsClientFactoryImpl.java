@@ -73,7 +73,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
 
     private AbstractSmsClient createSmsClient(SmsChannelProperties properties) {
         SmsChannelEnum channelEnum = SmsChannelEnum.getByCode(properties.getCode());
-        Assert.notNull(channelEnum, String.format("渠道类型(%s) 为空", channelEnum));
+        Assert.notNull(channelEnum, "渠道类型(%s) 为空".formatted(channelEnum));
         // 创建客户端
         switch (channelEnum) {
             case ALIYUN: return new AliyunSmsClient(properties);
@@ -84,7 +84,7 @@ public class SmsClientFactoryImpl implements SmsClientFactory {
         }
         // 创建失败，错误日志 + 抛出异常
         log.error("[createSmsClient][配置({}) 找不到合适的客户端实现]", properties);
-        throw new IllegalArgumentException(String.format("配置(%s) 找不到合适的客户端实现", properties));
+        throw new IllegalArgumentException("配置(%s) 找不到合适的客户端实现".formatted(properties));
     }
 
 }

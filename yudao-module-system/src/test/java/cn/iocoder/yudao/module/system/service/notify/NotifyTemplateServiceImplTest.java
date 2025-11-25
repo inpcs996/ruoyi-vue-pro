@@ -133,7 +133,7 @@ public class NotifyTemplateServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbNotifyTemplate, pageResult.getList().get(0));
+        assertPojoEquals(dbNotifyTemplate, pageResult.getList().getFirst());
     }
 
     @Test

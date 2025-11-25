@@ -72,7 +72,7 @@ public class SocialUserServiceImplTest extends BaseDbUnitTest {
         List<SocialUserDO> result = socialUserService.getSocialUserList(userId, userType);
         // 断言
         assertEquals(1, result.size());
-        assertPojoEquals(socialUser, result.get(0));
+        assertPojoEquals(socialUser, result.getFirst());
     }
 
     @Test
@@ -282,7 +282,7 @@ public class SocialUserServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbSocialUser, pageResult.getList().get(0));
+        assertPojoEquals(dbSocialUser, pageResult.getList().getFirst());
     }
 
 }

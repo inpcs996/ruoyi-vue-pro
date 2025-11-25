@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.pay.controller.admin.wallet.vo.rechargepackage;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 import java.time.LocalDateTime;
 
 @Schema(description = "管理后台 - 充值套餐 Response VO")

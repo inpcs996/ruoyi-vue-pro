@@ -1,7 +1,9 @@
 package cn.iocoder.yudao.module.system.controller.admin.oauth2.vo.client;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
 
 @Schema(description = "管理后台 - OAuth2 客户端分页 Request VO")

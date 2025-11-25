@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.erp.controller.admin.sale.vo.customer;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import cn.idev.excel.annotation.*;

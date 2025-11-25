@@ -50,7 +50,7 @@ public class AssertUtils {
             Assertions.assertEquals(
                     ReflectUtil.getFieldValue(expected, expectedField),
                     ReflectUtil.getFieldValue(actual, actualField),
-                    String.format("Field(%s) 不匹配", expectedField.getName())
+                    "Field(%s) 不匹配".formatted(expectedField.getName())
             );
         });
     }

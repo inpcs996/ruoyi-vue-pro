@@ -108,7 +108,7 @@ public class QiniuSmsClientTest extends BaseMockitoUnitTest {
         List<SmsReceiveRespDTO> statuses = smsClient.parseSmsReceiveStatus(text);
         // 断言
         assertEquals(1, statuses.size());
-        SmsReceiveRespDTO status = statuses.get(0);
+        SmsReceiveRespDTO status = statuses.getFirst();
         assertTrue(status.getSuccess());
         assertEquals("DELIVRD", status.getErrorMsg());
         assertEquals(LocalDateTime.of(2024, 8, 25, 21, 14, 26), status.getReceiveTime());

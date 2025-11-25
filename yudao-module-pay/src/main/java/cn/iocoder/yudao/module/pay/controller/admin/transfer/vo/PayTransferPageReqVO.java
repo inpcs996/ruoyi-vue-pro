@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.pay.controller.admin.transfer.vo;
 
-import lombok.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import org.springframework.format.annotation.DateTimeFormat;

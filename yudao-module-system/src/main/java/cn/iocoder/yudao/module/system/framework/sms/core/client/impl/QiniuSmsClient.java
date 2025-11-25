@@ -149,7 +149,7 @@ public class QiniuSmsClient extends AbstractSmsClient {
             case "reviewing": return SmsTemplateAuditStatusEnum.CHECKING.getStatus();
             case "rejected": return SmsTemplateAuditStatusEnum.FAIL.getStatus();
             default:
-                throw new IllegalArgumentException(String.format("未知审核状态(%str)", templateStatus));
+                throw new IllegalArgumentException("未知审核状态(%str)".formatted(templateStatus));
         }
     }
 }

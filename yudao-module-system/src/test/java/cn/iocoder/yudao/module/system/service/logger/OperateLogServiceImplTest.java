@@ -77,7 +77,7 @@ public class OperateLogServiceImplTest extends BaseDbUnitTest {
         // 断言，只查到了一条符合条件的
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(operateLogDO, pageResult.getList().get(0));
+        assertPojoEquals(operateLogDO, pageResult.getList().getFirst());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class OperateLogServiceImplTest extends BaseDbUnitTest {
         // 断言，只查到了一条符合条件的
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(operateLogDO, pageResult.getList().get(0));
+        assertPojoEquals(operateLogDO, pageResult.getList().getFirst());
     }
 
 }

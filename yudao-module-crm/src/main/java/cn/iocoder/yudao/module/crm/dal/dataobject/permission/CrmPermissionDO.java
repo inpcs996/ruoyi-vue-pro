@@ -6,7 +6,6 @@ import cn.iocoder.yudao.module.crm.enums.permission.CrmPermissionLevelEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * CRM 数据权限 DO

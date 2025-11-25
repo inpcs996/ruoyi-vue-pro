@@ -5,7 +5,6 @@ import cn.iocoder.yudao.module.member.enums.point.MemberPointBizTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.*;
 
 /**
  * 用户积分记录 DO

@@ -104,7 +104,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, result.size());
         // 断言（CodegenTableDO）
-        CodegenTableDO dbTable = codegenTableMapper.selectList().get(0);
+        CodegenTableDO dbTable = codegenTableMapper.selectList().getFirst();
         assertPojoEquals(table, dbTable);
         assertEquals(1L, dbTable.getDataSourceConfigId());
         assertEquals(CodegenSceneEnum.ADMIN.getScene(), dbTable.getScene());
@@ -113,7 +113,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         // 断言（CodegenColumnDO）
         List<CodegenColumnDO> dbColumns = codegenColumnMapper.selectList();
         assertEquals(columns.size(), dbColumns.size());
-        assertTrue(dbColumns.get(0).getPrimaryKey());
+        assertTrue(dbColumns.getFirst().getPrimaryKey());
         for (int i = 0; i < dbColumns.size(); i++) {
             assertPojoEquals(columns.get(i), dbColumns.get(i));
         }
@@ -220,7 +220,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         assertPojoEquals(updateReqVO.getTable(), dbTable);
         List<CodegenColumnDO> dbColumns = codegenColumnMapper.selectList();
         assertEquals(2, dbColumns.size());
-        assertPojoEquals(columnVO01, dbColumns.get(0));
+        assertPojoEquals(columnVO01, dbColumns.getFirst());
         assertPojoEquals(columnVO02, dbColumns.get(1));
     }
 
@@ -265,7 +265,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         // 断言
         List<CodegenColumnDO> dbColumns = codegenColumnMapper.selectList();
         assertEquals(newColumns.size(), dbColumns.size());
-        assertPojoEquals(newColumns.get(0), dbColumns.get(0));
+        assertPojoEquals(newColumns.getFirst(), dbColumns.getFirst());
         assertPojoEquals(newColumns.get(1), dbColumns.get(1));
     }
 
@@ -309,7 +309,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         List<CodegenTableDO> result = codegenService.getCodegenTableList(dataSourceConfigId);
         // 断言
         assertEquals(1, result.size());
-        assertPojoEquals(table01, result.get(0));
+        assertPojoEquals(table01, result.getFirst());
     }
 
     @Test
@@ -342,7 +342,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         // 断言，只查到了一条符合条件的
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(tableDO, pageResult.getList().get(0));
+        assertPojoEquals(tableDO, pageResult.getList().getFirst());
     }
 
     @Test
@@ -373,7 +373,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         List<CodegenColumnDO> result = codegenService.getCodegenColumnListByTableId(tableId);
         // 断言
         assertEquals(1, result.size());
-        assertPojoEquals(column01, result.get(0));
+        assertPojoEquals(column01, result.getFirst());
     }
 
     @Test
@@ -457,7 +457,7 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         Map<String, String> codes = MapUtil.of(randomString(), randomString());
         when(codegenEngine.execute(eq(table), argThat(columns -> {
             assertEquals(2, columns.size());
-            assertEquals(column01, columns.get(0));
+            assertEquals(column01, columns.getFirst());
             assertEquals(column02, columns.get(1));
             return true;
         }), isNull(), isNull())).thenReturn(codes);
@@ -498,12 +498,12 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         Map<String, String> codes = MapUtil.of(randomString(), randomString());
         when(codegenEngine.execute(eq(table), argThat(columns -> {
             assertEquals(2, columns.size());
-            assertEquals(column01, columns.get(0));
+            assertEquals(column01, columns.getFirst());
             assertEquals(column02, columns.get(1));
             return true;
         }), argThat(tables -> {
             assertEquals(1, tables.size());
-            assertPojoEquals(subTable, tables.get(0));
+            assertPojoEquals(subTable, tables.getFirst());
             return true;
         }), argThat(columns -> {
             assertEquals(1, columns.size());
@@ -545,8 +545,8 @@ public class CodegenServiceImplTest extends BaseDbUnitTest {
         List<DatabaseTableRespVO> result = codegenService.getDatabaseTableList(dataSourceConfigId, name, comment);
         // 断言
         assertEquals(1, result.size());
-        assertEquals("t_yunai", result.get(0).getName());
-        assertEquals("芋艿", result.get(0).getComment());
+        assertEquals("t_yunai", result.getFirst().getName());
+        assertEquals("芋艿", result.getFirst().getComment());
     }
 
 }

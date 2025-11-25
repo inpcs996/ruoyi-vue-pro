@@ -177,7 +177,7 @@ public class OAuth2ClientServiceImplTest extends BaseDbUnitTest {
         // 断言
         assertEquals(1, pageResult.getTotal());
         assertEquals(1, pageResult.getList().size());
-        assertPojoEquals(dbOAuth2Client, pageResult.getList().get(0));
+        assertPojoEquals(dbOAuth2Client, pageResult.getList().getFirst());
     }
 
     @Test
@@ -209,7 +209,7 @@ public class OAuth2ClientServiceImplTest extends BaseDbUnitTest {
                     null, null, null, "test"), OAUTH2_CLIENT_REDIRECT_URI_NOT_MATCH, "test");
             // 成功调用（1：参数完整）
             OAuth2ClientDO result = oauth2ClientService.validOAuthClientFromCache(client.getClientId(), client.getSecret(),
-                    client.getAuthorizedGrantTypes().get(0), client.getScopes(), client.getRedirectUris().get(0));
+                    client.getAuthorizedGrantTypes().getFirst(), client.getScopes(), client.getRedirectUris().getFirst());
             assertPojoEquals(client, result);
             // 成功调用（2：只有 clientId 参数）
             result = oauth2ClientService.validOAuthClientFromCache(client.getClientId());

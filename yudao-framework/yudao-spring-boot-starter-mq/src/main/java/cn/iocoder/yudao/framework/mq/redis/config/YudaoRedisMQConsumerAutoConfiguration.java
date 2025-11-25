@@ -141,7 +141,7 @@ public class YudaoRedisMQConsumerAutoConfiguration {
      * @return 消费者名字
      */
     public static String buildConsumerName() {
-        return String.format("%s@%d", SystemUtil.getHostInfo().getAddress(), SystemUtil.getCurrentPID());
+        return "%s@%d".formatted(SystemUtil.getHostInfo().getAddress(), SystemUtil.getCurrentPID());
     }
 
     /**

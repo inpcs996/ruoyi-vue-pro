@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.crm.controller.admin.product.vo.category;
 
 import com.mzt.logapi.starter.annotation.DiffLogField;
-import lombok.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import jakarta.validation.constraints.NotNull;

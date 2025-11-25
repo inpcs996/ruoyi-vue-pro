@@ -1,6 +1,5 @@
 package cn.iocoder.yudao.module.bpm.controller.admin.definition.vo.form;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 import jakarta.validation.constraints.NotNull;
 import java.util.List;

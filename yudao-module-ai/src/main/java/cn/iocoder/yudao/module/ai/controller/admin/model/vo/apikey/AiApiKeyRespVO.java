@@ -1,7 +1,6 @@
 package cn.iocoder.yudao.module.ai.controller.admin.model.vo.apikey;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
 
 @Schema(description = "管理后台 - AI API 密钥 Response VO")
 @Data

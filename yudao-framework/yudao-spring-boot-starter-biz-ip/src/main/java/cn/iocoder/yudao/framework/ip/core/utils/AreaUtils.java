@@ -45,10 +45,10 @@ public class AreaUtils {
                 null, new ArrayList<>()));
         // 从 csv 中加载数据
         List<CsvRow> rows = CsvUtil.getReader().read(ResourceUtil.getUtf8Reader("area.csv")).getRows();
-        rows.remove(0); // 删除 header
+        rows.removeFirst(); // 删除 header
         for (CsvRow row : rows) {
             // 创建 Area 对象
-            Area area = new Area(Integer.valueOf(row.get(0)), row.get(1), Integer.valueOf(row.get(2)),
+            Area area = new Area(Integer.valueOf(row.getFirst()), row.get(1), Integer.valueOf(row.get(2)),
                     null, new ArrayList<>());
             // 添加到 areas 中
             areas.put(area.getId(), area);
@@ -56,7 +56,7 @@ public class AreaUtils {
 
         // 构建父子关系：因为 Area 中没有 parentId 字段，所以需要重复读取
         for (CsvRow row : rows) {
-            Area area = areas.get(Integer.valueOf(row.get(0))); // 自己
+            Area area = areas.get(Integer.valueOf(row.getFirst())); // 自己
             Area parent = areas.get(Integer.valueOf(row.get(3))); // 父
             Assert.isTrue(area != parent, "{}:父子节点相同", area.getName());
             area.setParent(parent);
