@@ -51,4 +51,27 @@ rebel.xml
 application-my.yaml
 
 /yudao-ui-app/unpackage/
+
+######################################################################
+# yudao-ui 独立前端项目（各自有自己的 git 仓库）
+/yudao-ui/yudao-ui-admin-uniapp/*
+!/yudao-ui/yudao-ui-admin-uniapp/.gitkeep
+!/yudao-ui/yudao-ui-admin-uniapp/README.md
+
+/yudao-ui/yudao-ui-admin-vben/*
+!/yudao-ui/yudao-ui-admin-vben/.gitkeep
+!/yudao-ui/yudao-ui-admin-vben/README.md
+
+/yudao-ui/yudao-ui-admin-vue2/*
+!/yudao-ui/yudao-ui-admin-vue2/.gitkeep
+!/yudao-ui/yudao-ui-admin-vue2/README.md
+
+/yudao-ui/yudao-ui-admin-vue3/*
+!/yudao-ui/yudao-ui-admin-vue3/.gitkeep
+!/yudao-ui/yudao-ui-admin-vue3/README.md
+
+/yudao-ui/yudao-ui-mall-uniapp/*
+!/yudao-ui/yudao-ui-mall-uniapp/.gitkeep
+!/yudao-ui/yudao-ui-mall-uniapp/README.md
+
 **/.DS_Store
